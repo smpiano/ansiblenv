@@ -3,10 +3,11 @@
   roles:
     - autojump
     - bash
+    - docker
+    - gcloud
     - git
     - nodejs
     - software
+    - ssh
     - tmux
     - vim
-    - docker
-    - gcloud

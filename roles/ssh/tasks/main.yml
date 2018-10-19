@@ -1,0 +1,12 @@
+---
+- name: Install Open Secure Shell Server
+  apt:
+    name: openssh-server
+    state: latest
+  become: yes
+
+- name: Install Open Secure Shell Client
+  apt:
+    name: openssh-client
+    state: latest
+  become: yes

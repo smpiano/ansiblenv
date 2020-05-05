@@ -62,7 +62,7 @@ alias ~="cd ~"
 alias ls="ls --color=auto"
 alias ll="ls -lhA"
 alias la="ls -a"
-alias l="ls"
+alias l="ls -l"
 
 # Directory management
 alias mkdir="mkdir -pv"

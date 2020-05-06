@@ -26,10 +26,32 @@ let NERDTreeMapJumpPrevSibling=''
 let NERDTreeAutoDeleteBuffer=0
 let NERDTreeCascadeOpenSingleChildDir=0
 let NERDTreeBookmarksFile=expand("$HOME/.vim/bookmarks")
+nnoremap <leader>nt :NERDTreeToggle<cr>
 " Quick mark navigation
 Plug 'kshenoy/vim-signature'
 " Fuzzy navigation
-Plug 'Shougo/denite.nvim'
+if has('nvim')
+  Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/denite.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d
+  \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
+endfunction
 nnoremap <leader>zb :Denite buffer<cr>
 nnoremap <leader>zc :Denite command<cr>
 nnoremap <leader>zf :Denite file/rec<cr>
